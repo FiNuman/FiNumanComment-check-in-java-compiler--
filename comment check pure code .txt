@@ -1,0 +1,57 @@
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Comment Checker");
+        
+        int flg=0;
+        String ss="",s=sc.nextLine();
+        char a[]=new char[50];
+        
+        
+        //check slash comment 
+            for (int i = 0; i < s.length()-2; i++) {
+            if(s.charAt(i)=='/'){
+               if(s.charAt(i+1)=='/'){
+                   for (int j = i; j < s.length(); j++) {
+                       ss=ss+s.charAt(j);
+                       flg=1;
+                   }
+               }
+            }
+            }
+            
+            
+            //check star comment 
+            for (int i = 0; i < s.length()-2; i++) {
+            if(s.charAt(i)=='/')
+               if(s.charAt(i+1)=='*')
+                   for (int j = i; j < s.length();j++) {
+                       ss=ss+s.charAt(j);
+                       flg=1;
+                       
+                        if(s.charAt(j)=='*')
+                            if(s.charAt(j+1)=='/'){
+                                ss=ss+s.charAt(j+1);
+                                break;
+                            }
+                   }
+               }
+            
+            
+            
+            
+            //slash comment check for print if not then print star comment
+            if(flg==1){
+                if(ss.charAt(0)=='/'){
+                    if(ss.charAt(1)=='/'){
+                        System.out.print("This is slash(//) comment and \nComment is...");
+                        System.out.print(ss+"\n\n");
+                    }
+                    /*star comment printer*/
+                    else if(ss.charAt(1)=='*'){
+                        System.out.print("This is star (/*) Comment and \nComment is...");
+                        System.out.print(ss+"\n\n");
+                    }
+                }
+            }
+            else{
+                System.out.println("This is not a Comment in java compiler");
+            }
